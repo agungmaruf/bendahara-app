@@ -1,6 +1,6 @@
-# Kas Lantai — Aplikasi Bendahara
+# Kas JHC — Aplikasi Bendahara
 
-Aplikasi web untuk mengelola kas & iuran bulanan anggota (perawat Lantai 7),
+Aplikasi web untuk mengelola kas & iuran bulanan anggota JHC,
 menggantikan file Excel "UANG KAS RR.xlsx". Dibangun dengan **Next.js 16 +
 Supabase**, siap di-deploy ke **Vercel** (gratis).
 
@@ -66,7 +66,7 @@ Buka `http://localhost:3000` (halaman publik) dan
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    (nilai yang sama seperti di `.env.local`)
 4. Klik **Deploy**. Selesai — aplikasi kamu langsung online, contohnya
-   `kas-lantai-7.vercel.app`, sama seperti `balikinid.vercel.app`.
+   `kas-jhc.vercel.app`, sama seperti `balikinid.vercel.app`.
 
 Setiap kali kamu push perubahan ke GitHub, Vercel otomatis re-deploy.
 

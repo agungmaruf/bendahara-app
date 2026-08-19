@@ -1,5 +1,5 @@
 -- ============================================================================
--- KAS LANTAI — Database Schema untuk Aplikasi Bendahara
+-- KAS JHC — Database Schema untuk Aplikasi Bendahara
 -- Jalankan file ini di Supabase Dashboard > SQL Editor (sekali saja, di awal)
 -- ============================================================================
 
@@ -12,7 +12,7 @@ create extension if not exists "pgcrypto";
 create table if not exists settings (
   id int primary key default 1,
   nama_rs text not null default 'RS Jantung Jakarta',
-  unit text not null default 'Lantai 7',
+  unit text not null default 'JHC',
   nama_bendahara text not null default 'Bendahara',
   tahun_aktif int not null default 2026,
   iuran_rate_lama numeric not null default 10000,   -- tarif utk centang yang SUDAH ada sebelum kenaikan
@@ -135,7 +135,7 @@ create policy "admin delete bukti" on storage.objects for delete
 
 update settings set
   nama_rs = 'RS Jantung Jakarta',
-  unit = 'Lantai 7',
+  unit = 'JHC',
   nama_bendahara = 'Vanny Andirozse Ahsa',
   tahun_aktif = 2026,
   iuran_rate_lama = 10000,

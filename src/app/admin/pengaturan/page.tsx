@@ -67,7 +67,7 @@ export default function PengaturanPage() {
               <Input id="rs" value={form.nama_rs} onChange={(e) => setForm({ ...form, nama_rs: e.target.value })} />
             </div>
             <div>
-              <Label htmlFor="unit">Unit / Lantai</Label>
+              <Label htmlFor="unit">Unit / Nama Kas</Label>
               <Input id="unit" value={form.unit} onChange={(e) => setForm({ ...form, unit: e.target.value })} />
             </div>
             <div>

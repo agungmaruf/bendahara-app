@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Card } from "@/components/ui/Card";
 import { MonthGrid } from "@/components/MonthGrid";
+import { LevelBadge } from "@/components/gamify/LevelBadge";
 import { STATUS_COLOR, STATUS_LABEL, formatRupiah } from "@/lib/format";
 import type { MemberWithPayments } from "@/lib/types";
 
@@ -39,10 +40,11 @@ export function PublicSearch({ members }: { members: MemberWithPayments[] }) {
           <Card key={m.id} className="p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm text-[color:var(--ink)] truncate">{m.nama_lengkap}</p>
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-center gap-2 mt-1 flex-wrap">
                 <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${STATUS_COLOR[m.status]}`}>
                   {STATUS_LABEL[m.status]}
                 </span>
+                <LevelBadge totalCentang={m.totalCentang} size="sm" />
                 <span className="text-xs font-mono-num text-[color:var(--ink-soft)]">
                   {m.totalCentang}/12 bulan · {formatRupiah(m.totalRp)}
                 </span>

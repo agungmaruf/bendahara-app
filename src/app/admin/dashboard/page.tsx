@@ -8,7 +8,10 @@ import { Card } from "@/components/ui/Card";
 import { CashFlowChart } from "@/components/charts/CashFlowChart";
 import { MemberDonut } from "@/components/charts/MemberDonut";
 import { PulseDivider } from "@/components/PulseDivider";
+import { Leaderboard } from "@/components/gamify/Leaderboard";
+import { ProgressRing } from "@/components/gamify/ProgressRing";
 import { formatRupiah } from "@/lib/format";
+import { collectiveProgress } from "@/lib/gamify";
 
 export default function DashboardPage() {
   const YEAR = new Date().getFullYear() >= 2026 ? new Date().getFullYear() : 2026;
@@ -52,6 +55,19 @@ export default function DashboardPage() {
           <p className="text-sm font-semibold text-[color:var(--ink)] mb-4">Sebaran Status Anggota</p>
           <MemberDonut members={members} />
         </Card>
+      </div>
+
+      <div className="grid lg:grid-cols-5 gap-5 mt-5">
+        <Card className="p-5 lg:col-span-2 flex flex-col items-center justify-center text-center">
+          <p className="text-sm font-semibold text-[color:var(--ink)] mb-4 self-start">Capaian Kolektif Tahun Ini</p>
+          <ProgressRing percent={collectiveProgress(members)} label="rata-rata bulan lunas" />
+          <p className="text-xs text-[color:var(--ink-soft)] mt-4">
+            Makin dekat ke 100%, makin banyak lencana 🏆 dibagikan ke anggota.
+          </p>
+        </Card>
+        <div className="lg:col-span-3">
+          <Leaderboard members={members} limit={5} />
+        </div>
       </div>
 
       <Card className="p-5 mt-5">

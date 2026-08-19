@@ -9,8 +9,12 @@ import { Card } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { MonthGrid } from "@/components/MonthGrid";
 import { MemberFormModal } from "@/components/MemberFormModal";
+import { LevelBadge } from "@/components/gamify/LevelBadge";
+import { Confetti } from "@/components/gamify/Confetti";
+import { CelebrationToast } from "@/components/gamify/CelebrationToast";
 import { STATUS_COLOR, STATUS_LABEL, formatRupiah } from "@/lib/format";
-import type { Member } from "@/lib/types";
+import { getLevel } from "@/lib/gamify";
+import type { Member, MemberWithPayments } from "@/lib/types";
 
 export default function AnggotaPage() {
   const YEAR = new Date().getFullYear() >= 2026 ? new Date().getFullYear() : 2026;
@@ -19,6 +23,23 @@ export default function AnggotaPage() {
   const [q, setQ] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Member | null>(null);
+  const [confettiKey, setConfettiKey] = useState(0);
+  const [celebration, setCelebration] = useState<string | null>(null);
+
+  async function handleToggle(m: MemberWithPayments, bulan: number, next: boolean) {
+    const prevLevel = getLevel(m.totalCentang);
+    await togglePayment(m.id, bulan, next);
+    if (next) {
+      const newTotal = m.totalCentang + 1;
+      const newLevel = getLevel(newTotal);
+      if (newTotal === 12) {
+        setConfettiKey((k) => k + 1);
+        setCelebration(`${m.nama_lengkap} lunas 12/12! Legenda Kas 👑`);
+      } else if (newLevel.key !== prevLevel.key) {
+        setCelebration(`${m.nama_lengkap} naik level jadi "${newLevel.label}" ${newLevel.emoji}`);
+      }
+    }
+  }
 
   const filtered = members.filter((m) => m.nama_lengkap.toLowerCase().includes(q.toLowerCase()));
 
@@ -42,6 +63,8 @@ export default function AnggotaPage() {
 
   return (
     <div className="p-5 sm:p-8 max-w-7xl mx-auto">
+      <Confetti triggerKey={confettiKey} />
+      <CelebrationToast message={celebration} />
       <PageHeader
         title="Data & Iuran Anggota"
         subtitle={`${members.length} anggota terdaftar · Tahun ${settings.tahun_aktif}`}
@@ -84,6 +107,9 @@ export default function AnggotaPage() {
                 <th className="px-4 py-3 font-semibold text-[color:var(--teal-deep)] text-xs uppercase tracking-wide whitespace-nowrap">
                   Status
                 </th>
+                <th className="px-4 py-3 font-semibold text-[color:var(--teal-deep)] text-xs uppercase tracking-wide whitespace-nowrap">
+                  Level
+                </th>
                 <th className="px-4 py-3 font-semibold text-[color:var(--teal-deep)] text-xs uppercase tracking-wide text-right">
                   Aksi
                 </th>
@@ -102,7 +128,7 @@ export default function AnggotaPage() {
                     <MonthGrid
                       payments={m.payments}
                       editable
-                      onToggle={(bulan, next) => togglePayment(m.id, bulan, next)}
+                      onToggle={(bulan, next) => handleToggle(m, bulan, next)}
                     />
                   </td>
                   <td className="px-4 py-3 font-mono-num whitespace-nowrap">
@@ -113,6 +139,9 @@ export default function AnggotaPage() {
                     <span className={`text-[11px] font-semibold px-2 py-1 rounded-full whitespace-nowrap ${STATUS_COLOR[m.status]}`}>
                       {STATUS_LABEL[m.status]}
                     </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <LevelBadge totalCentang={m.totalCentang} size="sm" />
                   </td>
                   <td className="px-4 py-3 text-right whitespace-nowrap">
                     <button
@@ -134,7 +163,7 @@ export default function AnggotaPage() {
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="px-4 py-10 text-center text-[color:var(--ink-soft)]">
+                  <td colSpan={6} className="px-4 py-10 text-center text-[color:var(--ink-soft)]">
                     Tidak ada anggota ditemukan.
                   </td>
                 </tr>

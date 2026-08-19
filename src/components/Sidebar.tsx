@@ -44,7 +44,7 @@ export function Sidebar() {
         </div>
         <div>
           <p className="font-display font-semibold text-sm leading-tight text-[color:var(--ink)]">
-            Kas Lantai
+            Kas JHC
           </p>
           <p className="text-[11px] text-[color:var(--ink-soft)]">Panel Bendahara</p>
         </div>

@@ -16,7 +16,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
       {/* Mobile topbar */}
       <div className="lg:hidden fixed top-0 inset-x-0 z-40 h-14 bg-[color:var(--paper-raised)] border-b border-[color:var(--line)] flex items-center justify-between px-4">
-        <span className="font-display font-semibold text-sm">Kas Lantai — Admin</span>
+        <span className="font-display font-semibold text-sm">Kas JHC — Admin</span>
         <button
           onClick={() => setOpen(true)}
           aria-label="Buka menu"

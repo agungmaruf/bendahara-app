@@ -7,7 +7,10 @@ import { PulseDivider } from "@/components/PulseDivider";
 import { PublicSearch } from "@/components/PublicSearch";
 import { CashFlowChart } from "@/components/charts/CashFlowChart";
 import { Card } from "@/components/ui/Card";
+import { Leaderboard } from "@/components/gamify/Leaderboard";
+import { ProgressRing } from "@/components/gamify/ProgressRing";
 import { formatRupiah } from "@/lib/format";
+import { collectiveProgress } from "@/lib/gamify";
 import Link from "next/link";
 
 export default function PublicPage() {
@@ -82,6 +85,16 @@ export default function PublicPage() {
           <p className="text-xs text-[color:var(--ink-soft)] mb-2">Tahun {settings.tahun_aktif}</p>
           <CashFlowChart members={members} expenses={expenses} />
         </Card>
+
+        <div className="grid sm:grid-cols-5 gap-4 mt-6">
+          <Card className="p-5 sm:col-span-2 flex flex-col items-center justify-center text-center">
+            <p className="text-sm font-semibold text-[color:var(--ink)] mb-4 self-start">Semangat Kas Bersama 💪</p>
+            <ProgressRing percent={collectiveProgress(members)} label="rata-rata bulan lunas" />
+          </Card>
+          <div className="sm:col-span-3">
+            <Leaderboard members={members} limit={5} title="Papan Peringkat Anggota Terajin" />
+          </div>
+        </div>
 
         <div className="mt-10">
           <h3 className="font-display text-lg font-semibold text-[color:var(--ink)] mb-1">

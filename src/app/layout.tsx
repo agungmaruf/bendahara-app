@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kas Lantai — Aplikasi Bendahara",
+  title: "Kas JHC — Aplikasi Bendahara",
   description: "Aplikasi transparan pengelolaan kas & iuran bulanan anggota.",
 };
 

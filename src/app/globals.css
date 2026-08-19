@@ -110,3 +110,74 @@ body {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 8px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
+
+/* --- Gamifikasi: progress ring & leaderboard bars --- */
+.progress-ring-arc {
+  transition: stroke-dashoffset 900ms cubic-bezier(.4, 0, .2, 1);
+}
+.leaderboard-bar {
+  transition: width 900ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --- Gamifikasi: confetti burst --- */
+.confetti-piece {
+  position: absolute;
+  top: -12px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(560deg); opacity: 0; }
+}
+
+/* --- Gamifikasi: celebration toast --- */
+.celebration-toast {
+  animation: toast-drop 320ms cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes toast-drop {
+  0% { transform: translate(-50%, -16px); opacity: 0; }
+  100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* --- Gamifikasi: level-up pop on a checked month cell --- */
+.month-cell-pop {
+  animation: month-pop 420ms cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes month-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.28); }
+  100% { transform: scale(1); }
+}
+
+/* --- Gamifikasi: subtle shimmer on the top badge/level --- */
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+.badge-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: badge-shimmer 2.6s ease-in-out infinite;
+}
+@keyframes badge-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece, .celebration-toast, .month-cell-pop, .badge-shine::after {
+    animation: none !important;
+  }
+  .progress-ring-arc, .leaderboard-bar {
+    transition: none !important;
+  }
+}
