@@ -31,6 +31,12 @@ export const viewport: Viewport = {
   themeColor: "#0F6659",
 };
 
+// Data kas ditampilkan real-time dari Supabase di hampir semua halaman
+// (termasuk halaman publik "/"), jadi seluruh app dirender secara dynamic
+// (bukan di-prerender statis saat build). Ini juga mencegah build gagal
+// kalau env var Supabase belum kebaca saat proses build.
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
