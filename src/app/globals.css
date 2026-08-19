@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  /* --- Palette: "financial pulse" — ward-chart teal + brass gold, ECG coral --- */
-  --paper: #F4F8F6;          /* soft mint-white background, not cream */
+  /* --- Palette: "cardiac pulse" — clinical crimson + warm amber, ECG monitor red --- */
+  --paper: #FBF6F5;          /* soft warm off-white background */
   --paper-raised: #FFFFFF;
-  --ink: #0E211D;             /* deep teal-charcoal text */
-  --ink-soft: #4B615C;
-  --teal: #0F6659;            /* primary */
-  --teal-deep: #0A4A40;
-  --teal-tint: #E4F0EC;
+  --ink: #241012;             /* deep warm charcoal text */
+  --ink-soft: #6B4A4C;
+  --teal: #B3202A;            /* primary — cardiac crimson */
+  --teal-deep: #7A1015;
+  --teal-tint: #FBE9EA;
   --gold: #E8A33D;            /* accent / positive highlight */
   --gold-ink: #8A5A0F;
-  --coral: #E15252;           /* deficit / alert, ECG pulse red */
-  --coral-tint: #FCE8E8;
+  --coral: #E8734A;           /* deficit / alert — warm ember orange, distinct from primary red */
+  --coral-tint: #FDF0E7;
   --ok: #1E8E63;
-  --line: #D8E4E0;
-  --grid: #DCEAE5;
+  --line: #EADCDC;
+  --grid: #F3E4E4;
 
   --font-display: var(--font-space-grotesk);
   --font-body: var(--font-inter);

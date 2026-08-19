@@ -16,10 +16,10 @@ export function StatCard({
   accent?: "teal" | "gold" | "coral";
 }) {
   return (
-    <Card className="p-5 relative overflow-hidden">
+    <Card className="p-5 relative overflow-hidden [clip-path:inset(0_round_1rem)]">
       <div
         className={clsx(
-          "absolute -right-4 -top-4 w-20 h-20 rounded-full blur-2xl opacity-20",
+          "absolute -right-4 -top-4 w-20 h-20 rounded-full blur-2xl opacity-20 pointer-events-none",
           accent === "teal" && "bg-[color:var(--teal)]",
           accent === "gold" && "bg-[color:var(--gold)]",
           accent === "coral" && "bg-[color:var(--coral)]"
